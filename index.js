@@ -1,5 +1,7 @@
 // * Import NPM Modules
 import express from 'express'
+import helmet from 'helmet'
+import cors from 'cors'
 
 // * Import local JS files
 import config from './config/config.js'
@@ -10,6 +12,10 @@ const { PORT } = config
 
 // * Express Middlewares
 app.use(logger.middleware)
+app.use(helmet());
+app.use(cors({
+    origin: config.ALLOWED_ORIGINS,
+}))
 
 app.get('/', (_, res) => {
     res.send({ msg: 'hello' })
