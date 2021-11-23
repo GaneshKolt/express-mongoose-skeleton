@@ -6,6 +6,7 @@ import cors from 'cors'
 // * Import local JS files
 import config from './config/config.js'
 import logger from "./utils/logger.js"
+import errors from './utils/errors.js'
 
 const app = express()
 const { PORT } = config
@@ -20,6 +21,9 @@ app.use(cors({
 app.get('/', (_, res) => {
     res.send({ msg: 'hello' })
 })
+
+app.use(errors.pathNotFound)
+app.use(errors.errorHandler)
 
 app.listen(PORT, () => {
     logger.log.success(`Server is running on PORT ${PORT}`);
