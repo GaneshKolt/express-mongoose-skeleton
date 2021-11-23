@@ -5,7 +5,7 @@ import cors from 'cors'
 
 // * Import local JS files
 import config from './config/config.js'
-import logger from "./config/logger.js"
+import logger from "./utils/logger.js"
 
 const app = express()
 const { PORT } = config

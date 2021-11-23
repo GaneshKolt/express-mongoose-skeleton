@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import joi from 'joi'
 
 // * Import local JS files
-import logger from "./logger.js"
+import logger from "../utils/logger.js"
 
 dotenv.config()
 
