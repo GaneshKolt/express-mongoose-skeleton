@@ -1,14 +1,12 @@
 // * Import NPM Modules
 import express from 'express'
 
+// * Import local JS files
+import authController from '../controllers/auth.controller.js'
+
 const router = express.Router()
 
-router.post('/login', (req, res, next) => {
-    res.send('login route')
-})
-
-router.post('/register', (req, res, next) => {
-    res.send('login route')
-})
+router.post('/login', authController.login)
+router.post('/register', authController.register)
 
 export default router
