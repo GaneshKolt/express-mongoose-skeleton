@@ -7,13 +7,14 @@ import logger from "../utils/logger.js"
 
 dotenv.config()
 
-// ? Define & Validate ENV file using "JOI"
+// ? Define ENV file schema using "JOI"
 const envSchema = joi.object().keys({
     NODE_ENV: joi.string().valid('development', 'production').required(),
     PORT: joi.number().positive().required(),
     ALLOWED_ORIGINS: joi.string().required()
 }).unknown()
 
+// ? Validate ENV file using "JOI"
 const { value: env, error } = envSchema.prefs({ errors: { label: 'key' } }).validate(process.env)
 if (error) logger.log.error(new Error(`ENV Validation Error -> ${error.message}!!! Please check the ENV File...`))
 
