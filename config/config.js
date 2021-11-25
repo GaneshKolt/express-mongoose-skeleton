@@ -11,7 +11,9 @@ dotenv.config()
 const envSchema = joi.object().keys({
     NODE_ENV: joi.string().valid('development', 'production').required(),
     PORT: joi.number().positive().required(),
-    ALLOWED_ORIGINS: joi.string().required()
+    ALLOWED_ORIGINS: joi.string().required(),
+    MONGO_DB_URI: joi.string().required(),
+    MONGO_DB_NAME: joi.string().required()
 }).unknown()
 
 // ? Validate ENV file using "JOI"
@@ -22,5 +24,7 @@ if (error) logger.log.error(new Error(`ENV Validation Error -> ${error.message}!
 export default {
     NODE_ENV: env.NODE_ENV,
     PORT: env.PORT,
-    ALLOWED_ORIGINS: env.ALLOWED_ORIGINS.split(",") || '*'
+    ALLOWED_ORIGINS: env.ALLOWED_ORIGINS.split(",") || '*',
+    DB_URI: env.MONGO_DB_URI,
+    DB_NAME: env.MONGO_DB_NAME
 }
